@@ -1,24 +1,31 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+//import './style.css'
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
 
-setupCounter(document.querySelector('#counter'))
+// Función para obtener todas las tareas
+async function fetchTasks() {
+  try {
+      const response = await fetch('http://localhost:3000/tasks');
+      if (!response.ok) throw new Error('No hay respuesta');
+      const tasks = await response.json();
+      displayTasks(tasks);
+  } catch (error) {
+      console.error('Hubo un problema al obtener su petición:', error);
+  }
+}
+
+// Función para mostrar las tareas en el HTML
+function displayTasks(tasks) {
+  const tasksDiv = document.getElementById('tasks');
+  tasksDiv.innerHTML = tasks.map(task => `
+      <div>
+          <h2>${task.title}</h2>
+          <p>${task.description}</p>
+          <p>Estado: ${task.isComplete ? 'Completo' : 'Incompleto'}</p>
+      </div>
+  `).join('');
+}
+
+// Llama a la función para obtener y mostrar las tareas al cargar la página
+fetchTasks();
+
+
