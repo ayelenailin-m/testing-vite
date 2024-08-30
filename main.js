@@ -114,11 +114,26 @@ async function handleDeleteTask(event) {
 document.getElementById('createTaskButton').addEventListener('click', () => {
   showTaskForm();
 });
-
+/*
 async function handleUpdateTask(event) {
   const taskId = event.target.getAttribute('data-id');
   const task = await fetch(`http://localhost:3000/task/${taskId}`).then(res => res.json());
   showTaskForm(task[0]);
+}*/
+async function handleUpdateTask(event) {
+  const taskId = event.target.getAttribute('data-id');
+  try {
+    // Obtener la tarea específica desde la API
+    const response = await fetch(`http://localhost:3000/task/${taskId}`);
+    if (!response.ok) throw new Error('Error al obtener la tarea');
+    const task = await response.json();
+    
+    // Mostrar el formulario con los datos de la tarea
+    showTaskForm(task);
+  } catch (error) {
+    console.error('Hubo un problema al obtener la tarea:', error);
+  }
 }
+
 
 fetchTasks();
