@@ -6,29 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite App</title>
 </head>
-<body>
+<body class="font-sans bg-[#623f37] text-[#333] m-0 p-0">
 
-  <div class="container">
-    <h1>CRUD Lista de Tareas</h1>
+  <div class="container max-w-3xl m-5 mx-auto p-5 bg-[#f1dced] rounded-lg shadow-md">
+    <h1 class="text-2xl mb-5 text-center">CRUD Lista de Tareas</h1>
     <div id="tasks"></div>
-    <div class="buttonCreate"><button id="createTaskButton">Crear Nueva Tarea</button></div>
+    <div class="buttonCreate flex justify-center"><button id="createTaskButton" class="h-12 w-52 m-1.5 text-xl">Crear Nueva Tarea</button></div>
   </div>
 
   <!-- Formulario emergente -->
-  <div id="taskFormPopup" class="popup">
-    <form id="taskForm">
+  <div id="taskFormPopup" class="popup hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-5 shadow-lg z-50">
+    <form id="taskForm" class="flex flex-col justify-center">
       <h2 id="formTitle">Crear/Actualizar Tarea</h2>
-      <input type="text" id="title" placeholder="Título" required />
-      <textarea id="description" placeholder="Descripción" required></textarea>
+      <input type="text" id="title" class="mb-2.5 p-2.5" placeholder="Título" required />
+      <textarea id="description" class="mb-2.5 p-2.5" placeholder="Descripción" required></textarea>
       <label>
         <input type="checkbox" id="isComplete" /> Completa
       </label>
       <input type="hidden" id="taskId" />
-      <button type="submit">Guardar</button>
-      <button type="button" id="cancelButton">Cancelar</button>
+      <button type="submit" class="p-1 mt-2.5">Guardar</button>
+      <button type="button" id="cancelButton" class="p-1 mt-2.5">Cancelar</button>
     </form>
   </div>
 
-  <script type="module" src="/main.js"></script>
+  <script type="module" src="src/main.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-import './style.css';
+import './style/style.css'
 
 async function fetchTasks() {
   try {
@@ -14,13 +14,13 @@ async function fetchTasks() {
 function displayTasks(tasks) {
   const tasksDiv = document.getElementById('tasks');
   tasksDiv.innerHTML = tasks.map(task => `
-      <div>
-          <div class="info">
-            <h2>${task.title}</h2>
-            <p>${task.description}</p>
-            <p>Estado: ${task.isComplete ? 'Completo' : 'Incompleto'}</p>
+      <div class="p-2.5 mb-2.5 rounded bg-[#fafafa] flex justify-between">
+          <div class="info flex flex-col">
+            <h2 class="m-0 text-3xl text-gray-800">${task.title}</h2>
+            <p class="my-1.5">${task.description}</p>
+            <p class="my-1.5">Estado: ${task.isComplete ? 'Completo' : 'Incompleto'}</p>
           </div>
-          <div class="buttonTasks">
+          <div class="buttonTasks items-center flex justify-center">
             <button class="updateTaskButton" data-id="${task.id}">Actualizar</button>
             <button class="deleteTaskButton" data-id="${task.id}">Eliminar</button>
           </div>
